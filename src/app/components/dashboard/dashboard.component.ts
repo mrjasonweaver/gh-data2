@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { IParams, params } from '../../models/issues.model';
 import { IssuesStore } from '../../store/issues.store';
 // import { PullRequestsStore } from '../../store/pullrequests';
-// import { CurrentUserStore } from '../../store/currentUser';
+import { CurrentUserStore } from '../../store/current-user.store';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +16,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentUser;
 
   constructor(
-    // public currentUserStore: CurrentUserStore,
+    public currentUserStore: CurrentUserStore,
     public issuesStore: IssuesStore,
     // public pullRequestsStore: PullRequestsStore
   ) { }
 
   ngOnInit() {
-    // this.cuSub = this.currentUserStore.currentUser$.subscribe(user => this.currentUser = user.login);
+    this.cuSub = this.currentUserStore.currentUser$.subscribe(user => this.currentUser = user.login);
     this.loadUserIssues();
     // this.loadUserPullRequests();
   }

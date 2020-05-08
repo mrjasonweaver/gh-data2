@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UiStateStore } from '../../store/ui-state.store';
-// import { CurrentUserStore } from '../../store/currentUser';
+import { CurrentUserStore } from '../../store/current-user.store';
 
 export interface IRouteData {
   title: string;
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   searchTerm = '';
   constructor(
     public uiStateStore: UiStateStore,
-    // public currentUserStore: CurrentUserStore,
+    public currentUserStore: CurrentUserStore,
     private router: Router
   ) {}
 
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
     return this.router.navigate([`/${this.currentRoute}`], { queryParams: { sort, order, page, searchTerm: this.searchTerm } });
   }
 
-  // logout() {
-  //   return this.currentUserStore.logoutCurrentUser();
-  // }
+  logout() {
+    return this.currentUserStore.logoutCurrentUser();
+  }
 }

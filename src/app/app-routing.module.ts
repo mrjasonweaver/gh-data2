@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { IssuesComponent } from './components/issues/issues.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './services/auth-guard/auth-guard.service';
 
 
 const routes: Routes = [
-  // routes
   {
     path: '',
     pathMatch: 'full',
@@ -16,15 +17,15 @@ const routes: Routes = [
     path: 'dashboard',
     pathMatch: 'full',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data: { animation: 'dashboard', title: 'Dashboard', icon: 'dashboard' }
   },
   {
     path: 'issues',
     pathMatch: 'full',
     component: IssuesComponent,
-    // canActivate: [AuthGuard],
-    data: { animation: 'issues', title: 'Issues', icon: 'insert_chart' }
+    canActivate: [AuthGuard],
+    data: { animation: 'issues', title: 'Issues', icon: 'new_releases' }
   },
   // {
   //   path: 'users',
@@ -33,12 +34,12 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   data: { animation: 'users', title: 'Users', icon: 'account_circle' }
   // },
-  // {
-  //   path: 'login',
-  //   pathMatch: 'full',
-  //   component: LoginComponent,
-  //   data: { animation: 'login', title: 'login', icon: 'fingerprint' }
-  // }
+  {
+    path: 'login',
+    pathMatch: 'full',
+    component: LoginComponent,
+    data: { animation: 'login', title: 'login', icon: 'fingerprint' }
+  }
 ]
 
 @NgModule({

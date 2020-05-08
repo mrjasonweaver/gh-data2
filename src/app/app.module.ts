@@ -36,6 +36,10 @@ import { IssuesService } from './services/issues/issues.service';
 import { UiStateStore } from './store/ui-state.store';
 import { DebounceObsInputComponent } from './components/debounce-obs-input/debounce-obs-input.component';
 import { CacheService } from './services/cache/cache.service';
+import { LoginComponent } from './components/login/login.component';
+import { CurrentUserStore } from './store/current-user.store';
+import { CurrentUserService } from './services/current-user/current-user.service';
+import { AuthGuard } from './services/auth-guard/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,7 @@ import { CacheService } from './services/cache/cache.service';
     LogoComponent,
     IssuesComponent,
     DebounceObsInputComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,9 @@ import { CacheService } from './services/cache/cache.service';
     IssuesStore,
     UiStateStore,
     CacheService,
+    CurrentUserStore,
+    CurrentUserService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
