@@ -10,10 +10,10 @@ import { IssuesService } from '../services/issues/issues.service';
 import { IIssuesObject, IIssuesParams, IIssue, initialIssuesObject } from '../models/issues.model';
 
 @Injectable()
-export class IssuesStore {
+export class PullRequestsStore {
   private _key: string;
-  private _issuesObject: BehaviorSubject<IIssuesObject> = new BehaviorSubject(initialIssuesObject);
-  public readonly issuesObject: Observable<IIssuesObject> = this._issuesObject;
+  private _pullRequestsObject: BehaviorSubject<IIssuesObject> = new BehaviorSubject(initialIssuesObject);
+  public readonly pullRequestsObject: Observable<IIssuesObject> = this._pullRequestsObject;
   config = { duration: 1500 };
 
   constructor(
@@ -23,34 +23,34 @@ export class IssuesStore {
     public snackBar: MatSnackBar
   ) { }
 
-  get issues$(): Observable<IIssue[]> {
-    return this.issuesObject.pipe( pluck('items') );
+  get pullRequests$(): Observable<IIssue[]> {
+    return this.pullRequestsObject.pipe( pluck('items') );
   }
-  get issuesCount$(): Observable<number> {
-    return this.issuesObject.pipe( pluck('total_count') );
+  get pullRequestsCount$(): Observable<number> {
+    return this.pullRequestsObject.pipe( pluck('total_count') );
   }
 
-  loadIssues(p: IIssuesParams): Subscription | void {
+  loadPullRequests(p: IIssuesParams): Subscription | void {
     this._key = makeKeyStr(p);
-    this.uiStateStore.startAction('Retrieving Issues...', false);
+    this.uiStateStore.startAction('Retrieving Pull Requests...', false);
     return this.cache.validKey(this._key) ? this.loadCache() : this.loadApi(p);
   }
 
   loadCache(): void {
     const issues = this.cache.getCache(this._key).value;
-    this._issuesObject.next(issues);
-    this.uiStateStore.endAction('Issues retrieved', false);
+    this._pullRequestsObject.next(issues);
+    this.uiStateStore.endAction('Pull Requests retrieved', false);
   }
 
   loadApi(p: IIssuesParams): Subscription {
     return this.issuesService.getIssues(p).subscribe(res => {
       this.cache.setCache(this._key, res);
-      this._issuesObject.next(res);
-      this.uiStateStore.endAction('Issues retrieved', false);
+      this._pullRequestsObject.next(res);
+      this.uiStateStore.endAction('Pull Requests retrieved', false);
     },
       err =>  {
-        this.uiStateStore.endAction('Error retrieving issues', false);
-        this.snackBar.open('No issues found', null, this.config);
+        this.uiStateStore.endAction('Error retrieving Pull Requests', false);
+        this.snackBar.open('No Pull Requests found', null, this.config);
       }
     );
   }

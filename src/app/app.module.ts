@@ -40,6 +40,8 @@ import { LoginComponent } from './components/login/login.component';
 import { CurrentUserStore } from './store/current-user.store';
 import { CurrentUserService } from './services/current-user/current-user.service';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
+import { PullRequestsComponent } from './components/pull-requests/pull-requests.component';
+import { PullRequestsStore } from './store/pull-requests.store';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { AuthGuard } from './services/auth-guard/auth-guard.service';
     IssuesComponent,
     DebounceObsInputComponent,
     LoginComponent,
+    PullRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { AuthGuard } from './services/auth-guard/auth-guard.service';
     BrowserAnimationsModule,
     IssuesService,
     IssuesStore,
+    PullRequestsStore,
     UiStateStore,
     CacheService,
     CurrentUserStore,

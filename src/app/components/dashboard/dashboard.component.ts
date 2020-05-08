@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { IParams, params } from '../../models/issues.model';
+import { IIssuesParams, issuesParams } from '../../models/issues.model';
 import { IssuesStore } from '../../store/issues.store';
-// import { PullRequestsStore } from '../../store/pullrequests';
+import { PullRequestsStore } from '../../store/pull-requests.store';
 import { CurrentUserStore } from '../../store/current-user.store';
 
 @Component({
@@ -18,13 +18,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     public currentUserStore: CurrentUserStore,
     public issuesStore: IssuesStore,
-    // public pullRequestsStore: PullRequestsStore
+    public pullRequestsStore: PullRequestsStore
   ) { }
 
   ngOnInit() {
     this.cuSub = this.currentUserStore.currentUser$.subscribe(user => this.currentUser = user.login);
     this.loadUserIssues();
-    // this.loadUserPullRequests();
+    this.loadUserPullRequests();
   }
 
   ngOnDestroy() {
@@ -33,9 +33,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getParams(): IParams {
+  private getParams(): IIssuesParams {
     return {
-      ...params,
+      ...issuesParams,
       searchTerm: this.currentUser
     };
   }
@@ -44,8 +44,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.issuesStore.loadIssues(this.getParams());
   }
 
-  // private loadUserPullRequests(): void {
-  //   this.pullRequestsStore.loadPullRequests(this.getParams());
-  // }
+  private loadUserPullRequests(): void {
+    this.pullRequestsStore.loadPullRequests(this.getParams());
+  }
 
 }

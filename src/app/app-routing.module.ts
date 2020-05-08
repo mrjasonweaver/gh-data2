@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
+import { PullRequestsComponent } from './components/pull-requests/pull-requests.component';
 
 
 const routes: Routes = [
@@ -27,13 +28,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { animation: 'issues', title: 'Issues', icon: 'new_releases' }
   },
-  // {
-  //   path: 'users',
-  //   pathMatch: 'full',
-  //   component: UsersComponent,
-  //   canActivate: [AuthGuard],
-  //   data: { animation: 'users', title: 'Users', icon: 'account_circle' }
-  // },
+  {
+    path: 'pullrequests',
+    pathMatch: 'full',
+    component: PullRequestsComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'pullrequests', title: 'Pull Requests', icon: 'merge_type' }
+  },
   {
     path: 'login',
     pathMatch: 'full',

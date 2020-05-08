@@ -22,7 +22,7 @@ export const initialIssuesObject: IIssuesObject = {
   items: []
 };
 
-export interface IParams {
+export interface IIssuesParams {
   username: string;
   repo: string;
   type: string;
@@ -33,7 +33,7 @@ export interface IParams {
   searchTerm: string;
 }
 
-export const params: IParams = {
+export const issuesParams: IIssuesParams = {
   username: 'angular',
   repo: 'angular',
   type: 'issues',

@@ -2,7 +2,7 @@ import { TestBed, inject, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { IssuesService } from './issues.service';
-import { params, mockIssuesObject } from '../../models/issues.model';
+import { issuesParams, mockIssuesObject } from '../../models/issues.model';
 
 xdescribe('IssuesService', () => {
   let injector: TestBed;
@@ -30,13 +30,13 @@ xdescribe('IssuesService', () => {
   describe('#getIssues', () => {
     it('should return an Observable<IIssuesObject>', () => {
 
-      issuesTestService.getIssues(params).subscribe(issues => {
+      issuesTestService.getIssues(issuesParams).subscribe(issues => {
         expect(issues.total_count).toBe(1000);
         expect(issues.items.length).toBe(2);
         expect(issues).toEqual(mockIssuesObject);
       });
-      const unRepoSegments = `?q=repo:${params.username}/${params.repo}&sort=${params.sort}&order=${params.order}`;
-      const queryParamsSegments = `&page=${params.page}&per_page=${params.perPage}`;
+      const unRepoSegments = `?q=repo:${issuesParams.username}/${issuesParams.repo}&sort=${issuesParams.sort}&order=${issuesParams.order}`;
+      const queryParamsSegments = `&page=${issuesParams.page}&per_page=${issuesParams.perPage}`;
 
       const req = httpMock.expectOne(`${issuesTestService.url}${unRepoSegments}${queryParamsSegments}`);
       expect(req.request.method).toBe('GET');
