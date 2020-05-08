@@ -34,7 +34,9 @@ export class IssuesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.pSub.unsubscribe();
-    this.cuSub.unsubscribe();
+    if (this.cuSub) {
+      this.cuSub.unsubscribe();
+    }
   }
 
   private getParams(p): IParams {

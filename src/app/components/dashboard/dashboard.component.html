@@ -1,6 +1,7 @@
 <!-- <div *ngIf="(currentUserStore.currentUser$ | async) as currentUser" class="app-container"> -->
 <div class="app-container">
-  <div class="container" *ngIf="currentUser.login" fxLayout="column" fxLayoutAlign="space-around center">
+  <!-- <div class="container" *ngIf="currentUser.login" fxLayout="column" fxLayoutAlign="space-around center"> -->
+  <div class="container" fxLayout="column" fxLayoutAlign="space-around center">
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <mat-card>
         <mat-card-header>
@@ -10,7 +11,7 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <div class="big-digits">{{currentUser.public_repos}}</div>
+          <!-- <div class="big-digits">{{currentUser.public_repos}}</div> -->
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -21,7 +22,7 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <div class="big-digits">{{currentUser.public_gists}}</div>
+          <!-- <div class="big-digits">{{currentUser.public_gists}}</div> -->
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -48,7 +49,7 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <div class="big-digits">{{currentUser.followers}}</div>
+          <!-- <div class="big-digits">{{currentUser.followers}}</div> -->
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -59,7 +60,7 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <div class="big-digits">{{currentUser.following}}</div>
+          <!-- <div class="big-digits">{{currentUser.following}}</div> -->
         </mat-card-content>
       </mat-card>
       <mat-card>

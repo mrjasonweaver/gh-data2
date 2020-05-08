@@ -28,7 +28,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.cuSub.unsubscribe();
+    if (this.cuSub) {
+      this.cuSub.unsubscribe();
+    }
   }
 
   private getParams(): IParams {
