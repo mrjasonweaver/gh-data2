@@ -1,7 +1,7 @@
 <div class="loader" *ngIf="(uiStateStore.uiState$ | async) as uiState">
-  <mat-progress-bar *ngIf="uiState.actionOngoing" mode="indeterminate" color="primary"></mat-progress-bar>
+  <mat-progress-bar *ngIf="uiState.actionOngoing" mode="indeterminate" color="accent"></mat-progress-bar>
 </div>
-<mat-toolbar class="header" color="accent" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxLayoutAlign="start center">
     <app-logo></app-logo>
     <nav>
