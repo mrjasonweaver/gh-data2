@@ -1,4 +1,5 @@
-<div *ngIf="(currentUserStore.currentUser$ | async) as currentUser" class="app-container">
+<!-- <div *ngIf="(currentUserStore.currentUser$ | async) as currentUser" class="app-container"> -->
+<div class="app-container">
   <div class="container" *ngIf="currentUser.login" fxLayout="column" fxLayoutAlign="space-around center">
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <mat-card>
@@ -68,12 +69,12 @@
           <mat-card-subtitle>Your pull request count</mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content>
+        <!-- <mat-card-content>
             <div *ngIf="(pullRequestsStore.pullRequestsCount$ | async) as prsCount; else noprs" class="big-digits">
                 {{prsCount}}
               </div>
               <ng-template #noprs> <div class="big-digits">0</div> </ng-template>
-        </mat-card-content>
+        </mat-card-content> -->
       </mat-card>
     </div>
   </div>
