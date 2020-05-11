@@ -5,6 +5,7 @@ import { IIssuesParams, issuesParams } from '../../models/issues.model';
 import { IssuesStore } from '../../store/issues.store';
 import { PullRequestsStore } from '../../store/pull-requests.store';
 import { CurrentUserStore } from '../../store/current-user.store';
+import { pullRequestsParams } from 'src/app/models/pull-requests.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,19 +34,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getParams(): IIssuesParams {
+  private getIssuesParams(): IIssuesParams {
     return {
       ...issuesParams,
       searchTerm: this.currentUser
     };
   }
 
+  private getPullRequestsParams(): IIssuesParams {
+    return {
+      ...pullRequestsParams,
+      searchTerm: this.currentUser
+    };
+  }
+
   private loadUserIssues(): void {
-    this.issuesStore.loadIssues(this.getParams());
+    this.issuesStore.loadIssues(this.getIssuesParams());
   }
 
   private loadUserPullRequests(): void {
-    this.pullRequestsStore.loadPullRequests(this.getParams());
+    this.pullRequestsStore.loadPullRequests(this.getPullRequestsParams());
   }
 
 }
