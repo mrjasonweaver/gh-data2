@@ -77,6 +77,9 @@ body { margin: 0; }
 .header > div mat-icon {
   color: rgba(255,255,255,.6);
 }
+app-logo {
+  letter-spacing: 1px;
+}
 nav ul {
   padding: 0;
   margin: 0 0 0 10px;
@@ -104,6 +107,9 @@ nav a:hover, nav .active {
 }
 .exit-icon:hover {
   cursor: pointer;
+}
+nav span {
+  letter-spacing: 1px;
 }
 .global-search {
   width: 300px;

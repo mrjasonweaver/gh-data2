@@ -14,17 +14,6 @@
       </mat-card>
       <mat-card>
         <mat-card-header>
-          <mat-icon mat-card-avatar color="primary">bookmarks</mat-icon>
-          <mat-card-title>Gists</mat-card-title>
-          <mat-card-subtitle>Public gist count</mat-card-subtitle>
-        </mat-card-header>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-          <div class="big-digits">{{currentUser.public_gists}}</div>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-header>
           <mat-icon mat-card-avatar color="primary">new_releases</mat-icon>
           <mat-card-title>Issues</mat-card-title>
           <mat-card-subtitle>Your issue count</mat-card-subtitle>
@@ -35,6 +24,20 @@
             {{issuesCount}}
           </div>
           <ng-template #noissues> <div class="big-digits">0</div> </ng-template>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-icon mat-card-avatar>merge_type</mat-icon>
+          <mat-card-title>Pull Requests</mat-card-title>
+          <mat-card-subtitle>Your pull request count</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div *ngIf="(pullRequestsStore.pullRequestsCount$ | async) as prsCount; else noprs" class="big-digits">
+              {{prsCount}}
+            </div>
+            <ng-template #noprs> <div class="big-digits">0</div> </ng-template>
         </mat-card-content>
       </mat-card>
     </div>
@@ -63,16 +66,13 @@
       </mat-card>
       <mat-card>
         <mat-card-header>
-          <mat-icon mat-card-avatar>merge_type</mat-icon>
-          <mat-card-title>Pull Requests</mat-card-title>
-          <mat-card-subtitle>Your pull request count</mat-card-subtitle>
+          <mat-icon mat-card-avatar color="primary">bookmarks</mat-icon>
+          <mat-card-title>Gists</mat-card-title>
+          <mat-card-subtitle>Public gist count</mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-            <div *ngIf="(pullRequestsStore.pullRequestsCount$ | async) as prsCount; else noprs" class="big-digits">
-              {{prsCount}}
-            </div>
-            <ng-template #noprs> <div class="big-digits">0</div> </ng-template>
+          <div class="big-digits">{{currentUser.public_gists}}</div>
         </mat-card-content>
       </mat-card>
     </div>
