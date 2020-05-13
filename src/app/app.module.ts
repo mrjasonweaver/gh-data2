@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSortModule } from '@angular/material/sort';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './app-shell/header/header.component';
@@ -78,6 +79,7 @@ import { PullRequestsStore } from './store/pull-requests.store';
     MatSnackBarModule,
     MatSortModule,
     FlexLayoutModule,
+    NgxChartsModule
   ],
   providers: [
     BrowserAnimationsModule,

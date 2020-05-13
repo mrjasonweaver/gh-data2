@@ -14,7 +14,7 @@ export class IssuesStore {
   private _key: string;
   private _issuesObject: BehaviorSubject<IIssuesObject> = new BehaviorSubject(initialIssuesObject);
   public readonly issuesObject: Observable<IIssuesObject> = this._issuesObject;
-  config = { duration: 1500 };
+  config = { duration: 3000 };
 
   constructor(
     private issuesService: IssuesService,

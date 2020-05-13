@@ -14,7 +14,7 @@ export class PullRequestsStore {
   private _key: string;
   private _pullRequestsObject: BehaviorSubject<IIssuesObject> = new BehaviorSubject(initialIssuesObject);
   public readonly pullRequestsObject: Observable<IIssuesObject> = this._pullRequestsObject;
-  config = { duration: 1500 };
+  config = { duration: 3000 };
 
   constructor(
     private issuesService: IssuesService,

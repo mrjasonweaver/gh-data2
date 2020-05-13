@@ -9,9 +9,12 @@ body { margin: 0; }
 .container {
   margin: 40px;
 }
-.container:before, .container:after{
+.container:before, .container:after {
   content: ' ';
   display: table;
+}
+.ngx-charts-outer {
+  height: 300px;
 }
 .loading {
   opacity: 0.4;
