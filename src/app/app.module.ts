@@ -43,6 +43,8 @@ import { CurrentUserService } from './services/current-user/current-user.service
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PullRequestsComponent } from './components/pull-requests/pull-requests.component';
 import { PullRequestsStore } from './store/pull-requests.store';
+import { CommitsService } from './services/commits/commits.service';
+import { CommitsStore } from './store/commits.store';
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { PullRequestsStore } from './store/pull-requests.store';
     CurrentUserStore,
     CurrentUserService,
     AuthGuard,
+    CommitsService,
+    CommitsStore
   ],
   bootstrap: [AppComponent]
 })

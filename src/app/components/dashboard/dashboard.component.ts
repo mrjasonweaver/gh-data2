@@ -6,7 +6,9 @@ import { IssuesStore } from '../../store/issues.store';
 import { PullRequestsStore } from '../../store/pull-requests.store';
 import { CurrentUserStore } from '../../store/current-user.store';
 import { pullRequestsParams } from 'src/app/models/pull-requests.model';
+import { commitsParams, ICommitsParams } from 'src/app/models/commits.model';
 import { multi } from 'src/app/data';
+import { CommitsStore } from 'src/app/store/commits.store';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,7 +40,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     public currentUserStore: CurrentUserStore,
     public issuesStore: IssuesStore,
-    public pullRequestsStore: PullRequestsStore
+    public pullRequestsStore: PullRequestsStore,
+    public commitsStore: CommitsStore
   ) {
     Object.assign(this, { multi });
   }
@@ -47,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.cuSub = this.currentUserStore.currentUser$.subscribe(user => this.currentUser = user.login);
     this.loadUserIssues();
     this.loadUserPullRequests();
+    this.loadCommits();
   }
 
   ngOnDestroy() {
@@ -81,12 +85,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
   }
 
+  private getCommitsParams(): ICommitsParams {
+    return {
+      ...commitsParams,
+      username: this.currentUser
+    };
+  }
+
   private loadUserIssues(): void {
     this.issuesStore.loadIssues(this.getIssuesParams());
   }
 
   private loadUserPullRequests(): void {
     this.pullRequestsStore.loadPullRequests(this.getPullRequestsParams());
+  }
+
+  private loadCommits(): void {
+    this.commitsStore.loadCommits(this.getCommitsParams());
   }
 
 }
