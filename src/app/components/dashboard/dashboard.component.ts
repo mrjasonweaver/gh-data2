@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentUser;
   multi: any[];
   view: any[] = [1000, 300];
+  formattedDates;
 
   // options
   legend: boolean = true;
@@ -44,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public commitsStore: CommitsStore
   ) {
     Object.assign(this, { multi });
+    this.getYearlyTimeframe();
   }
 
   ngOnInit() {
@@ -71,6 +73,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
+  getYearlyTimeframe() {
+    const currentDate = Date.now();
+    let d = new Date(currentDate),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    const OneYearAgo = year - 1;
+    const formattedDateNow = [year, month, day].join('-');
+    const formattedDate1YearAgo = [OneYearAgo, month, day].join('-');
+    return this.formattedDates = [formattedDate1YearAgo, formattedDateNow];
+  }
+
   private getIssuesParams(): IIssuesParams {
     return {
       ...issuesParams,
@@ -88,7 +108,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private getCommitsParams(): ICommitsParams {
     return {
       ...commitsParams,
-      username: this.currentUser
+      username: this.currentUser,
+      afterDate: this.formattedDates[0],
+      beforeDate: this.formattedDates[1]
     };
   }
 

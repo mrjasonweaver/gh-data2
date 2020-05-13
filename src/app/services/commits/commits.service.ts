@@ -13,7 +13,7 @@ export class CommitsService {
   constructor(private http: HttpClient) {}
 
   getCommits(params: ICommitsParams): Observable<ICommitsObject> {
-    const unRepoSegments = `?q=author:${params.username}+author-date:${params.afterDate}..${params.beforeDate}`;
+    const unRepoSegments = `?q=author:${params.username}+author-date:${params.afterDate}..${params.beforeDate}+sort:author-date`;
     return this.http.get<ICommitsObject>(`${this.url}${unRepoSegments}`,
     {headers: new HttpHeaders().set('Accept', 'application/vnd.github.cloak-preview')});
   }
