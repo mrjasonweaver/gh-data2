@@ -6,8 +6,7 @@ import { IssuesStore } from '../../store/issues.store';
 import { PullRequestsStore } from '../../store/pull-requests.store';
 import { CurrentUserStore } from '../../store/current-user.store';
 import { pullRequestsParams } from 'src/app/models/pull-requests.model';
-import { commitsParams, ICommitsParams } from 'src/app/models/commits.model';
-import { multi } from 'src/app/data';
+import { commitsParams, ICommitsParams, ICommitTimelineYear } from 'src/app/models/commits.model';
 import { CommitsStore } from 'src/app/store/commits.store';
 
 @Component({
@@ -18,24 +17,19 @@ import { CommitsStore } from 'src/app/store/commits.store';
 export class DashboardComponent implements OnInit, OnDestroy {
   cuSub: Subscription;
   currentUser;
-  multi: any[];
   view: any[] = [1000, 300];
   formattedDates;
 
   // options
-  legend: boolean = true;
+  legend: boolean = false;
   showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
-  timeline: boolean = true;
+  gradient: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#26C6DA']
   };
 
   constructor(
@@ -44,7 +38,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public pullRequestsStore: PullRequestsStore,
     public commitsStore: CommitsStore
   ) {
-    Object.assign(this, { multi });
     this.getYearlyTimeframe();
   }
 
@@ -80,10 +73,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
 
     const OneYearAgo = year - 1;
     const formattedDateNow = [year, month, day].join('-');

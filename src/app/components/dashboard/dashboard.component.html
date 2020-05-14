@@ -5,25 +5,22 @@
         <mat-card-header>
           <img mat-card-avatar src="{{currentUser.avatar_url}}">
           <mat-card-title>@{{currentUser.login}}</mat-card-title>
-          <mat-card-subtitle>Commit data</mat-card-subtitle>
+          <mat-card-subtitle>Your commit data</mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content>
-          <ngx-charts-line-chart
+        <mat-card-content *ngIf="(commitsStore.commitsTimeline$ | async) as commitsTimeline;">
+          <ngx-charts-area-chart
             [view]=view
             [scheme]="colorScheme"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
             [xAxis]="xAxis"
             [yAxis]="yAxis"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [results]="multi"
+            [gradient]="gradient"
+            [results]="commitsTimeline"
             (select)="onSelect($event)"
             (activate)="onActivate($event)"
             (deactivate)="onDeactivate($event)"
             >
-          </ngx-charts-line-chart>
+          </ngx-charts-area-chart>
         </mat-card-content>
       </mat-card>
     </div>
@@ -32,7 +29,7 @@
         <mat-card-header>
           <mat-icon mat-card-avatar color="primary">book</mat-icon>
           <mat-card-title>Repositories</mat-card-title>
-          <mat-card-subtitle>Public repo count</mat-card-subtitle>
+          <mat-card-subtitle>Your public repo count</mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
@@ -95,7 +92,7 @@
         <mat-card-header>
           <mat-icon mat-card-avatar color="primary">bookmarks</mat-icon>
           <mat-card-title>Gists</mat-card-title>
-          <mat-card-subtitle>Public gist count</mat-card-subtitle>
+          <mat-card-subtitle>Your public gist count</mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>

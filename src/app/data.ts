@@ -1,67 +1,54 @@
 export const multi = [
   {
-    "name": "Germany",
+    "name": "Commits",
     "series": [
       {
-        "name": "1990",
-        "value": 62000000
+        "name": "Jan",
+        "value": 45
       },
       {
-        "name": "2010",
-        "value": 73000000
+        "name": "Feb",
+        "value": 57
       },
       {
-        "name": "2011",
-        "value": 89400000
-      }
-    ]
-  },
-
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "1990",
-        "value": 250000000
+        "name": "Mar",
+        "value": 101
       },
       {
-        "name": "2010",
-        "value": 309000000
+        "name": "Apr",
+        "value": 54
       },
       {
-        "name": "2011",
-        "value": 311000000
-      }
-    ]
-  },
-
-  {
-    "name": "France",
-    "series": [
-      {
-        "name": "1990",
-        "value": 58000000
+        "name": "May",
+        "value": 71
       },
       {
-        "name": "2010",
-        "value": 50000020
+        "name": "Jun",
+        "value": 110
       },
       {
-        "name": "2011",
-        "value": 58000000
-      }
-    ]
-  },
-  {
-    "name": "UK",
-    "series": [
-      {
-        "name": "1990",
-        "value": 57000000
+        "name": "Jul",
+        "value": 45
       },
       {
-        "name": "2010",
-        "value": 62000000
+        "name": "Aug",
+        "value": 72
+      },
+      {
+        "name": "Sep",
+        "value": 30
+      },
+      {
+        "name": "Oct",
+        "value": 45
+      },
+      {
+        "name": "Nov",
+        "value": 79
+      },
+      {
+        "name": "Dec",
+        "value": 90
       }
     ]
   }

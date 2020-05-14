@@ -1,4 +1,4 @@
-export interface ICommit     {
+export interface ICommit {
   sha: string;
   commit: {
     url: string;
@@ -36,6 +36,72 @@ export interface ICommit     {
     }
   }
 }
+
+export interface ICommitTimelineMonth {
+  name: string; // month
+  value: number; // number of commits
+}
+
+export interface ICommitTimelineYear {
+  name: string; // "Commits"
+  series: ICommitTimelineMonth[]; // array of months
+}
+
+export const initialCommitTimelineYearObject: ICommitTimelineYear = {
+  name: 'Commits',
+  series: [
+    {
+      "name": "Jan",
+      "value": 0
+    },
+    {
+      "name": "Feb",
+      "value": 0
+    },
+    {
+      "name": "Mar",
+      "value": 0
+    },
+    {
+      "name": "Apr",
+      "value": 0
+    },
+    {
+      "name": "May",
+      "value": 0
+    },
+    {
+      "name": "Jun",
+      "value": 0
+    },
+    {
+      "name": "Jul",
+      "value": 0
+    },
+    {
+      "name": "Aug",
+      "value": 0
+    },
+    {
+      "name": "Sep",
+      "value": 0
+    },
+    {
+      "name": "Oct",
+      "value": 0
+    },
+    {
+      "name": "Nov",
+      "value": 0
+    },
+    {
+      "name": "Dec",
+      "value": 0
+    }
+  ]
+};
+
+export const initialCommitTimelineYear = [ initialCommitTimelineYearObject ]
 
 export interface ICommitsObject {
   total_count: number;
