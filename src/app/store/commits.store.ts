@@ -44,7 +44,9 @@ export class CommitsStore {
 
   loadCache(): void {
     const commits = this.cache.getCache(this._key).value;
+    const timeline = this.makeCommitsTimeline(commits);
     this._commitsObject.next(commits);
+    this._commitsTimeline.next([timeline]);
     this.uiStateStore.endAction('Commits retrieved', false);
   }
 

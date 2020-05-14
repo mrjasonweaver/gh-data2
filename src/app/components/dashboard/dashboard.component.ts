@@ -17,7 +17,7 @@ import { CommitsStore } from 'src/app/store/commits.store';
 export class DashboardComponent implements OnInit, OnDestroy {
   cuSub: Subscription;
   currentUser;
-  view: any[] = [1000, 300];
+  view: any[] = [980, 300];
   formattedDates;
 
   // options
