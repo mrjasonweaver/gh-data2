@@ -5,7 +5,7 @@
         <mat-card-header>
           <img mat-card-avatar src="{{currentUser.avatar_url}}">
           <mat-card-title>@{{currentUser.login}}</mat-card-title>
-          <mat-card-subtitle>Your commit data</mat-card-subtitle>
+          <mat-card-subtitle>Data: <span *ngIf="(commitsStore.commitsCount$ | async) as commitsCount;">{{ commitsCount }} commits in the past year</span></mat-card-subtitle>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content *ngIf="(commitsStore.commitsTimeline$ | async) as commitsTimeline;">

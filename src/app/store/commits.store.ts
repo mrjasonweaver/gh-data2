@@ -73,9 +73,9 @@ export class CommitsStore {
       const indexOfMonth = +commit.commit.author.date.split('-')[1] - 1;
       return commitsByMonth.series[indexOfMonth].value = commitsByMonth.series[indexOfMonth].value + 1;
     });
-    const startWithCurrentMonth = commitsByMonth.series.slice(currentMonthIndex);
-    const beginningOfYear = commitsByMonth.series.slice(0, currentMonthIndex);
-    const startWithCurrentMonthArray = startWithCurrentMonth.concat(beginningOfYear).reverse();
+    const startWithCurrentMonth = commitsByMonth.series.slice(currentMonthIndex + 1);
+    const beginningOfYear = commitsByMonth.series.slice(0, currentMonthIndex + 1);
+    const startWithCurrentMonthArray = startWithCurrentMonth.concat(beginningOfYear);
     return { ...commitsByMonth, series: startWithCurrentMonthArray };
   }
 
