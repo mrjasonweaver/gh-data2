@@ -8,7 +8,7 @@ import { CacheService } from '../services/cache/cache.service';
 import { UiStateStore } from './ui-state.store';
 import { CommitsService } from '../services/commits/commits.service';
 import { ICommitsObject, ICommitsParams, ICommit, initialCommitsObject,
-  ICommitTimelineYear, initialCommitTimelineYearObject, initialCommitTimelineYear } from '../models/commits.model';
+  ICommitTimelineYear, initialCommitTimelineYearObject, initialCommitTimelineYear, ICommitTimelineMonth } from '../models/commits.model';
 
 @Injectable()
 export class CommitsStore {
@@ -44,7 +44,7 @@ export class CommitsStore {
 
   loadCache(): void {
     const commits = this.cache.getCache(this._key).value;
-    const timeline = this.makeCommitsTimeline(commits);
+    const timeline = this.makeCommitsTimeline(commits.items);
     this._commitsObject.next(commits);
     this._commitsTimeline.next([timeline]);
     this.uiStateStore.endAction('Commits retrieved', false);
@@ -66,17 +66,25 @@ export class CommitsStore {
   }
 
   makeCommitsTimeline(data: ICommit[]): ICommitTimelineYear {
-    let commitsByMonth = initialCommitTimelineYearObject;
     const dateNow = Date.now();
     const currentMonthIndex = new Date(dateNow).getMonth();
+    const timelineReset = this.resetCommitsTimeline(initialCommitTimelineYearObject);
+    const newTimeline = { ...timelineReset };
     data.forEach((commit: ICommit) => {
       const indexOfMonth = +commit.commit.author.date.split('-')[1] - 1;
-      return commitsByMonth.series[indexOfMonth].value = commitsByMonth.series[indexOfMonth].value + 1;
+      return newTimeline.series[indexOfMonth].value = newTimeline.series[indexOfMonth].value + 1;
     });
-    const startWithCurrentMonth = commitsByMonth.series.slice(currentMonthIndex + 1);
-    const beginningOfYear = commitsByMonth.series.slice(0, currentMonthIndex + 1);
+    const startWithCurrentMonth = newTimeline.series.slice(currentMonthIndex + 1);
+    const beginningOfYear = newTimeline.series.slice(0, currentMonthIndex + 1);
     const startWithCurrentMonthArray = startWithCurrentMonth.concat(beginningOfYear);
-    return { ...commitsByMonth, series: startWithCurrentMonthArray };
+    return { ...newTimeline, series: startWithCurrentMonthArray };
+  }
+
+  resetCommitsTimeline(timeline: ICommitTimelineYear): ICommitTimelineYear {
+    const series = timeline.series.map((item: ICommitTimelineMonth) => {
+      return { name: item.name, value: 0 }
+    });
+    return { ...timeline, series };
   }
 
 }
