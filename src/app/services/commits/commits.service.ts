@@ -13,8 +13,10 @@ export class CommitsService {
   constructor(private http: HttpClient) {}
 
   getCommits(params: ICommitsParams): Observable<ICommitsObject> {
-    const unRepoSegments = `?q=author:${params.username}+author-date:${params.afterDate}..${params.beforeDate}+sort:author-date&per_page=100`;
-    return this.http.get<ICommitsObject>(`${this.url}${unRepoSegments}`,
+    const unSegment = `?q=author:${params.username}`;
+    const dateRangeSegment = `+author-date:${params.afterDate}..${params.beforeDate}+sort:author-date`;
+    const perPageSegment = `&per_page=100`;
+    return this.http.get<ICommitsObject>(`${this.url}${unSegment}${dateRangeSegment}${perPageSegment}`,
     {headers: new HttpHeaders().set('Accept', 'application/vnd.github.cloak-preview')});
   }
 }
